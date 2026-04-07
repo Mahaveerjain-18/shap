@@ -44,7 +44,6 @@ def test_large_background_dataset_warning():
         shap.TreeExplainer(model, background, feature_perturbation="interventional")
 
 
-
 def test_front_page_xgboost():
     xgboost = pytest.importorskip("xgboost")
 
