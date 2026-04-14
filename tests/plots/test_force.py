@@ -117,3 +117,26 @@ def test_force_plot_positive_sign():
         show=False,
     )
     return plt.gcf()
+
+
+@pytest.mark.mpl_image_compare(tolerance=3)
+def test_force_plot_tight_layout():
+    """Test that force plot applies tight_layout to prevent truncation.
+
+    Regression test for GH #4223.
+    """
+    np.random.seed(42)
+    base = 100
+    contribution = np.r_[np.random.rand(3), -np.random.rand(3)]
+    names = [f"feature_{i}" for i in range(6)]
+
+    shap.force_plot(
+        base,
+        contribution,
+        names,
+        matplotlib=True,
+        show=False,
+    )
+    fig = plt.gcf()
+    fig.tight_layout()
+    return fig
