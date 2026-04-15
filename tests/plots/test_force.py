@@ -118,6 +118,7 @@ def test_force_plot_positive_sign():
     )
     return plt.gcf()
 
+
 def test_flipud_reverses_clust_order():
     """Regression test for GH-4342: np.flipud(clustOrder) was a no-op."""
     from shap.plots._force import AdditiveExplanation, AdditiveForceArrayVisualizer
@@ -134,6 +135,7 @@ def test_flipud_reverses_clust_order():
         out_value = base_value + effects.sum()
         instance = Instance(np.ones((1, len(feature_names))), np.zeros(len(feature_names)))
         return AdditiveExplanation(base_value, out_value, effects, None, instance, link, model, data)
+
     # Sample 0: low total  (sum = 1.0)
     # Sample 1: high total (sum = 10.0)
     exp_low = _make_exp([0.5, 0.5])
@@ -148,4 +150,3 @@ def test_flipud_reverses_clust_order():
         f"Higher-prediction sample should come first (lower simIndex), "
         f"got simIndex_high={sim_high}, simIndex_low={sim_low}"
     )
-
